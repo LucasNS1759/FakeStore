@@ -15,7 +15,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 // );
 
 // Render
-const sequelize = new Sequelize("postgres://fakestore_fkys_user:ZRNj43mX9TM0Q2vr6RF5ZjpZSFS9o5nj@dpg-cn5at4en7f5s738gtosg-a/fakestore_fkys", {
+const sequelize = new Sequelize("postgres://fakestore_fkys_user:ZRNj43mX9TM0Q2vr6RF5ZjpZSFS9o5nj@dpg-cn5at4en7f5s738gtosg-a.oregon-postgres.render.com/fakestore_fkys", {
   logging: false,
   native: false,
   dialectOptions: {
