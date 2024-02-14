@@ -16,11 +16,7 @@ const googleCallback = (req, res, next) => {
       });
 
       // Almacena el token en una cookie
-      res.cookie("Google_Login_Token", token, {
-        httpOnly: true,
-        SameSite: "None",
-        maxAge: tokenExpiration * 1000,
-      });
+      localStorage.setItem("Google_Login_Token", token);
 
       return res.redirect(`https://fake-store-gilt.vercel.app//logueado`);
     }
