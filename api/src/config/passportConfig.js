@@ -14,7 +14,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_SECRET_CLIENT,
-      callbackURL: "http://localhost:3001/user/auth/google/callback",
+      callbackURL: "https://fakestore-hiqs.onrender.com/user/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       console.log(profile.emails[0].value);

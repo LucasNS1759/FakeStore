@@ -22,7 +22,7 @@ const googleCallback = (req, res, next) => {
         maxAge: tokenExpiration * 1000,
       });
 
-      return res.redirect(`http://localhost:5173/logueado`);
+      return res.redirect(`fake-store-gilt.vercel.app/logueado`);
     }
   })(req, res, next);
 };

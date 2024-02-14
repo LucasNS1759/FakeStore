@@ -6,7 +6,12 @@ import ProductsListPage from "./Components/ProductsListPage/ProductsListPage";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 
-axios.defaults.baseURL = "http://localhost:3001";
+// Local
+// axios.defaults.baseURL = "http://localhost:3001";
+
+// Deploy
+axios.defaults.baseURL = "https://fakestore-hiqs.onrender.com";
+
 
 const App = () => {
   return (
