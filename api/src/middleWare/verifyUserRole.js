@@ -5,7 +5,7 @@ const { SECRET_KEY_JWT } = process.env;
 
 const verifyRole = async (req, res, next) => {
   const googleToken = req.cookies.Google_Login_Token;
-
+console.log(googleToken)
   if (googleToken) {
     try {
       const decodedToken = jwt.verify(googleToken, SECRET_KEY_JWT);

@@ -14,14 +14,14 @@ const googleCallback = (req, res, next) => {
       const token = jwt.sign({ userId: user.id }, SECRET_KEY_JWT, {
         expiresIn: tokenExpiration,
       });
-
+console.log(token)
       // Almacena el token en una cookie
       res.cookie("Google_Login_Token", token, {
         httpOnly: true,
         SameSite: "None",
         maxAge: tokenExpiration * 1000,
       });
-
+     console.log( req.cookies.Google_Login_Token)
       return res.redirect(`http://localhost:5173/logueado`);
     }
   })(req, res, next);

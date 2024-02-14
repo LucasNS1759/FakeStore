@@ -21,6 +21,7 @@ const CardProduct = ({ key, id, title, price, image, amount }) => {
           withCredentials: true, // Configurar withCredentials a true
         }
       );
+      console.log(response)
       getProductsCartQuery.refetch();
     } catch (error) {
       Swal.fire({

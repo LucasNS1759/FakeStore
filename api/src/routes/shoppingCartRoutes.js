@@ -4,10 +4,10 @@ const verifyUser  = require("../middleWare/verifyUserRole");
 
 const shoppingCartRoutes = Router();
 
-shoppingCartRoutes.post("/addProduct", verifyUser, addToCartHandler);
-shoppingCartRoutes.get("/getProductsFromCart", verifyUser, getProductsFromCartHandler);
-shoppingCartRoutes.delete("/deleteProductFromCart", verifyUser, deleteProductFromCartHandler);
-shoppingCartRoutes.put("/changeAmount", verifyUser, changeAmountProductHandler);
+shoppingCartRoutes.post("/addProduct",  addToCartHandler);
+shoppingCartRoutes.get("/getProductsFromCart",  getProductsFromCartHandler);
+shoppingCartRoutes.delete("/deleteProductFromCart",  deleteProductFromCartHandler);
+shoppingCartRoutes.put("/changeAmount",  changeAmountProductHandler);
 
 
 
