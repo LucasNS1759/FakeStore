@@ -1,9 +1,10 @@
-
+import { useEffect } from "react";
 
 const Logueado = () => {
-  return (
-    <div>Logueado</div>
-  )
-}
+  useEffect(() => {
+    window.localStorage.setItem("logueado", true);
+  }, []);
+  return <div>Logueado</div>;
+};
 
-export default Logueado
+export default Logueado;
