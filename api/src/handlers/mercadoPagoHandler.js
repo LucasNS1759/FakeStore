@@ -39,7 +39,7 @@ const mercadoPagoHandlerCheckOut = async (req, res) => {
         },
       },
       back_urls: {
-        success: "http://localhost:3001/payment/success",
+        success: "https://fake-store-gilt.vercel.app/logueado",
         failure: "http://www.failure.com",
         pending: "http://www.pending.com",
       },
