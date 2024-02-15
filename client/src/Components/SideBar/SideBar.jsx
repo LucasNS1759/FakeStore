@@ -2,11 +2,66 @@ import axios from "axios";
 import CheckOut from "../CheckOut/CheckOut";
 import { useQuery } from "@tanstack/react-query";
 
+
 const SideBar = ({ setSiderBarOpne, sideBarOpen }) => {
+
+//local
+// const SideBar = ({ setSiderBarOpne, sideBarOpen }) => {
+//   const getItems = async () => {
+//     try {
+//       const response = await axios.get("/shoppingCart/getProductsFromCart", {
+//         withCredentials: true,
+//       });
+//       return response;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+// const handleDeleteItem = async (id) => {
+//   try {
+//     const response = await axios.delete(
+//       "/shoppingCart/deleteProductFromCart",
+//       {
+//         data: { itemId: id }, // Mueve los datos aquí
+//         withCredentials: true, // Configura withCredentials a true
+//       }
+//     );
+//     if (response.status === 200) {
+//       refetch();
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// const handlerChangeAmount = async (id, amount) => {
+//   try {
+//     const response = await axios.put(
+//       "/shoppingCart/changeAmount",
+//       {
+//         itemId: id,
+//         amount: amount,
+//       },
+//       {
+//         withCredentials: true, // Configura withCredentials a true
+//       }
+//     );
+//     if (response.status === 200) {
+//       refetch();
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+//deploy
   const getItems = async () => {
     try {
-      const response = await axios.get("/shoppingCart/getProductsFromCart", {
-        withCredentials: true,
+      const response = await axios.post("/shoppingCart/getProductsFromCart", {
+      
+          userId: window.localStorage.getItem("userId"),
+    
       });
       return response;
     } catch (error) {
@@ -21,11 +76,12 @@ const SideBar = ({ setSiderBarOpne, sideBarOpen }) => {
 
   const handleDeleteItem = async (id) => {
     try {
-      const response = await axios.delete(
+      const response = await axios.post(
         "/shoppingCart/deleteProductFromCart",
         {
-          data: { itemId: id }, // Mueve los datos aquí
-          withCredentials: true, // Configura withCredentials a true
+          userId: window.localStorage.getItem("userId"),
+          itemId: id 
+
         }
       );
       if (response.status === 200) {
@@ -42,11 +98,11 @@ const SideBar = ({ setSiderBarOpne, sideBarOpen }) => {
         "/shoppingCart/changeAmount",
         {
           itemId: id,
-          amount: amount
+          amount: amount,
+          userId: window.localStorage.getItem("userId"),
+          
         },
-        {
-          withCredentials: true // Configura withCredentials a true
-        }
+        
       );
       if (response.status === 200) {
         refetch();
