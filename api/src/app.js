@@ -21,11 +21,19 @@ const server = express();
 
 server.use(
   cors({
-    origin: "https://fake-store-gilt.vercel.app?", // Asegúrate de que coincida con el origen de tu aplicación
+    origin: "https://fake-store-gilt.vercel.app/", // Asegúrate de que coincida con el origen de tu aplicación
     credentials: true, // Habilita el envío de cookies con credenciales si es necesario
   })
 );
+server.use(
+  "/user",
+  cors({
+    origin: "https://fake-store-gilt.vercel.app/", // Asegúrate de que coincida con el origen de tu aplicación
 
+    // origin: "http://localhost:5173", // Asegúrate de que coincida con el origen de tu aplicación
+    credentials: true, // Habilita el envío de cookies con credenciales si es necesario
+  })
+);
 server.use(cookieParser());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
@@ -46,7 +54,7 @@ server.use(helmet());
 
 // Deploy
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://fake-store-gilt.vercel.app?"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "https://fake-store-gilt.vercel.app/"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",

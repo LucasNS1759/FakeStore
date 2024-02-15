@@ -36,7 +36,7 @@ const googleCallback = (req, res, next) => {
       // );
 
       return res.redirect(
-        `https://fake-store-gilt.vercel.app//logueado?userId=${usuario.id}`
+        `https://fake-store-gilt.vercel.app/logueado?userId=${usuario.id}`
       );
     }
   })(req, res, next);
