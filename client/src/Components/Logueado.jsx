@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useLocation } from "react-router-dom";
 
 
@@ -15,4 +16,5 @@ const Logueado = () => {
   )
 }
 
-export default Logueado
+
+export default Logueado;
