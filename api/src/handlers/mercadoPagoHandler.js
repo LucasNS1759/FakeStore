@@ -5,7 +5,7 @@ const { ACCESS_TOKEN_MP } = process.env;
 const mercadopago = new MercadoPagoConfig({ accessToken: ACCESS_TOKEN_MP });
 
 const mercadoPagoHandlerCheckOut = async (req, res) => {
-  console.log(req.userLoginId);
+  console.log("req.userlogin",req.userLoginId);
   const { user, carritoDeCompras } = await controllerFindAUserByPk(
     req.userLoginId
   );
@@ -39,7 +39,11 @@ const mercadoPagoHandlerCheckOut = async (req, res) => {
         },
       },
       back_urls: {
-        success: "https://fake-store-gilt.vercel.app/logueado",
+      // Local
+        success: "http://localhost:3001/payment/success",
+       // Deploy
+        // success: "https://fake-store-gilt.vercel.app/logueado",
+
         failure: "http://www.failure.com",
         pending: "http://www.pending.com",
       },
@@ -75,10 +79,10 @@ const mercadoPagoHandlerSucces = async (req, res) => {
   const externalReference = req.query.external_reference;
 
   // Haz lo que necesites con los datos (almacenar en la base de datos, enviar notificaciones, etc.)
-  console.log('ID de pago:', paymentId);
-  console.log('Estado del pago:', status);
-  console.log('Referencia externa:', externalReference);
-  res.status(200).json({msg : "Ok"})
+  console.log("ID de pago:", paymentId);
+  console.log("Estado del pago:", status);
+  console.log("Referencia externa:", externalReference);
+  res.status(200).json({ msg: "Ok" });
 };
 const mercadoPagoHandlerFailure = async (req, res) => {};
 const mercadoPagoHandlerPending = async (req, res) => {};

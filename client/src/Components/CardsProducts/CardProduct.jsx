@@ -3,29 +3,54 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
-
 const CardProduct = ({ key, id, title, price, image, amount }) => {
   const getProductsCartQuery = useQuery({ queryKey: ["getProductsToCart"] });
 
+  //Forma de añadir productos de manera local con cookies
+  // const addProductCartHandler = async () => {
+  //   try {
+  //     const response = await axios.post("/shoppingCart/addProduct",
+  //       {
+  //         productId: id,
+  //         title,
+  //         price,
+  //         image,
+  //         amount: 1,
+  //       },
+  //       {
+  //         withCredentials: true, // Configurar withCredentials a true
+  //       }
+  //     );
+  //     getProductsCartQuery.refetch();
+  //   } catch (error) {
+  //     Swal.fire({
+  //       title: error.response.data.error,
+  //       text: error.response.data.message ,
+  //       icon: "warning",
+  //       button: "ok",
+  //     });
+  //     console.log(error);
+  //   }
+  // };
+
+  //forma de añadir productos en deploy por falta de cookies en la version grauiota de rende
   const addProductCartHandler = async () => {
+    const userId = window.localStorage.getItem("userId");
+    console.log(userId);
     try {
-      const response = await axios.post("/shoppingCart/addProduct",
-        {
-          productId: id,
-          title,
-          price,
-          image,
-          amount: 1,
-        },
-        {
-          withCredentials: true, // Configurar withCredentials a true
-        }
-      );
+      const response = await axios.post("/shoppingCart/addProduct", {
+        userId : userId,
+        productId: id,
+        title,
+        price,
+        image,
+        amount: 1,
+      });
       getProductsCartQuery.refetch();
     } catch (error) {
       Swal.fire({
-        title: error.response.data.error,
-        text: error.response.data.message ,
+        title: error.response.data.error || error,
+        text: error.response.data.message || error,
         icon: "warning",
         button: "ok",
       });
@@ -38,7 +63,6 @@ const CardProduct = ({ key, id, title, price, image, amount }) => {
       key={key}
       className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
     >
-   
       <button
         onClick={addProductCartHandler}
         className="p-2 flex rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 "
